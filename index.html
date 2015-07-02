@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        function getJSON(url, destination, type)
+        {
+            var xmlhttp;
+            if (window.XMLHttpRequest)
+            {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    document.getElementById(destination).innerHTML = xmlhttp.responseText;
+                }
+                else if( xmlhttp.readyState==4 )
+                {
+                    document.getElementById(destination).innerHTML = 
+                        "Unable to load json! Error " + xmlhttp.status;
+                }
+            }
+            document.getElementById(destination).innerHTML="Loading...";
+            xmlhttp.open(type,url,true);
+            xmlhttp.send();
+        }
+    </script>
+</head>
+<body onload="getJSON('cgi-bin/json_post.py', 'json_response', 'POST')">
+    <p>
+        So the top result here uses the web server CGI script to query a website for JSON data
+        and returns it. Really the cgi-script fetches data from any website and returns it. You can 
+        use it if you want to do server side processing of the data.
+    </p>
+    <!-- onload and a manual refresh type event -->
+    <button onclick="getJSON('cgi-bin/json_post.py', 'json_response', 'POST')">Refresh</button>
+    <pre id="json_response"></pre>
+    
+    <p>
+    The Direct get option fetches JSON from a website directly. Use this option if you want to do 
+    client side manipulation of stuff.
+    </p>
+    
+    <!-- Of course you can directly query the external json site. -->
+    <button onclick="getJSON('http://jsonplaceholder.typicode.com/posts/1', 'json_direct', 'GET')">Direct Get</button>
+    <pre id='json_direct'></pre>
+</body>
+
+</html>
