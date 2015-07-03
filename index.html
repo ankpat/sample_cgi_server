@@ -31,24 +31,18 @@
         }
     </script>
 </head>
-<body onload="getJSON('cgi-bin/json_post.py', 'json_response', 'POST')">
+<body onload="getJSON('cgi-bin/get_beers.rb', 'json_response', 'POST')">
     <p>
-        So the top result here uses the web server CGI script to query a website for JSON data
-        and returns it. Really the cgi-script fetches data from any website and returns it. You can 
-        use it if you want to do server side processing of the data.
+        Here's an updated demo that uses the ruby script.
+        It works by using the magic of CGI. 
+    </p>
+    <p>
+        As configured now, you can access the raw JSON data by simply navigating
+        to the <a href="cgi-bin/get_beers.rb">script location</a>.
     </p>
     <!-- onload and a manual refresh type event -->
-    <button onclick="getJSON('cgi-bin/json_post.py', 'json_response', 'POST')">Refresh</button>
+    <button onclick="getJSON('cgi-bin/get_beers.rb', 'json_response', 'POST')">Refresh</button>
     <pre id="json_response"></pre>
-    
-    <p>
-    The Direct get option fetches JSON from a website directly. Use this option if you want to do 
-    client side manipulation of stuff.
-    </p>
-    
-    <!-- Of course you can directly query the external json site. -->
-    <button onclick="getJSON('http://jsonplaceholder.typicode.com/posts/1', 'json_direct', 'GET')">Direct Get</button>
-    <pre id='json_direct'></pre>
 </body>
 
 </html>
