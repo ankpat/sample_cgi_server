@@ -48,15 +48,19 @@ module Frisco
 
         beers_list = Array.new
         
-        puts "Frisco Taphouse / Beers:"
         beers.each_with_index do |beer, index|
             b = Beer.new(beer, abvs[index])
-            puts "[#{index}] #{b.name} #{b.abv}"
             beers_list << b
         end
 
         puts beers_list.to_json
     end
 end
+
+# print HTTP headers manually. Can add encoding to end of content-type if needed
+
+puts "HTTP/1.0 200 OK"
+puts "Content-type: text/html\n\n"
+
 
 Frisco.beers
