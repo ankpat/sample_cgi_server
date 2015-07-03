@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require 'mechanize'
 require 'rubygems'
 require 'active_support/all'
